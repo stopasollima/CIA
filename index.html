@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #000000 0%, #1a0000 35%, #660000 70%, #990000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 20px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .drop {
+      position: absolute;
+      width: 2px;
+      background: rgba(255, 255, 255, 0.4);
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px);
+      }
+      100% {
+        transform: translateY(100vh);
+      }
+    }
+
+    /* ===== SOBREPOSIÇÃO (CARD) ===== */
+    .overlay {
+      background: rgba(0, 0, 0, 0.55);          /* fundo semi-transparente */
+      backdrop-filter: blur(12px);               /* efeito vidro fosco */
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    .overlay h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .overlay p {
+      text-align: center;
+      opacity: 0.75;
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+
+    /* ===== FORMULÁRIO ===== */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #ff3333;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Botão */
+    .btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      background: linear-gradient(90deg, #ff0000, #cc0000);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="rain" id="rain"></div>
+
+  <!-- SOBREPOSIÇÃO -->
+  <div class="overlay">
+    <h1>Formulário</h1>
+    <p>Preencha os dados abaixo</p>
+
+    <form>
+      <div class="form-group">
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Seu nome completo">
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="seu@email.com">
+      </div>
+
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" name="telefone" autocomplete="tel" placeholder="(00) 00000-0000">
+      </div>
+
+      <div class="form-group">
+        <label for="nascimento">Data de nascimento</label>
+        <input type="date" id="nascimento" name="nascimento" autocomplete="bday">
+      </div>
+
+      <div class="form-group">
+        <label for="cep">CEP</label>
+        <input type="text" id="cep" name="cep" autocomplete="postal-code" placeholder="00000-000">
+      </div>
+
+      <div class="form-group">
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco" name="endereco" autocomplete="street-address" placeholder="Rua ou avenida">
+      </div>
+
+      <div class="form-group">
+        <label for="numero">Número</label>
+        <input type="text" id="numero" name="numero" placeholder="Número">
+      </div>
+
+      <div class="form-group">
+        <label for="complemento">Complemento</label>
+        <input type="text" id="complemento" name="complemento" autocomplete="address-line2" placeholder="Apartamento, bloco etc. (opcional)">
+      </div>
+
+      <div class="form-group">
+        <label for="cidade">Cidade</label>
+        <input type="text" id="cidade" name="cidade" autocomplete="address-level2" placeholder="Sua cidade">
+      </div>
+
+      <div class="form-group">
+        <label for="estado">Estado</label>
+        <input type="text" id="estado" name="estado" autocomplete="address-level1" placeholder="Seu estado">
+      </div>
+
+      <div class="form-group">
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" placeholder="Escreva aqui..."></textarea>
+      </div>
+
+      <button type="submit" class="btn">Enviar</button>
+    </form>
+  </div>
+
+  <script>
+    const rain = document.getElementById('rain');
+
+    // Quantidade de gotas (pode aumentar ou diminuir)
+    for (let i = 0; i < 80; i++) {
+      const drop = document.createElement('div');
+      drop.classList.add('drop');
+
+      // Posição e tamanho aleatórios
+      drop.style.left = Math.random() * 100 + 'vw';
+      drop.style.height = Math.random() * 20 + 10 + 'px';
+      drop.style.animationDuration = Math.random() * 0.8 + 0.5 + 's';
+      drop.style.animationDelay = Math.random() * 2 + 's';
+      drop.style.opacity = Math.random() * 0.4 + 0.2;
+
+      rain.appendChild(drop);
+    }
+  </script>
+
+</body>
+</html>

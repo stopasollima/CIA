@@ -1,0 +1,8 @@
+/* Mais suave */
+background: linear-gradient(160deg, #ff1a1a, #990000, #330000, #000000);
+
+/* Mais intenso / dramático */
+background: linear-gradient(145deg, #ff0000 0%, #cc0000 25%, #660000 55%, #1a0000 80%, #000000 100%);
+
+/* Vertical (de cima pra baixo) */
+background: linear-gradient(to bottom, #ff0000, #000000);
